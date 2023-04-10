@@ -1,8 +1,8 @@
 //DEFAULT Answer text 
 let display_text = document.getElementById("Input").innerHTML
 
-let num1 = 0;
-let num2 = 0;
+let num1 = [];
+let num2 = [];
 let operator = null;
 let checkop = false;
 let checknum1 = false;
@@ -20,9 +20,9 @@ document.getElementById("0").onclick = function(){
     checknum(0)
 }
 document.getElementById("1").onclick = function(){
+    checknum(1)
     document.getElementById("Input").innerHTML = "1"
     number = 1;
-    checknum(1)
     
 }
 document.getElementById("2").onclick = function(){
@@ -53,11 +53,13 @@ document.getElementById("6").onclick = function(){
     checknum(6)
     document.getElementById("Input").innerHTML = "6"
     number = 6;
+    
 }
 document.getElementById("7").onclick = function(){
     checknum(7)
     document.getElementById("Input").innerHTML = "7"
     number = 7;
+
 }
 document.getElementById("8").onclick = function(){
     checknum(8)
@@ -71,6 +73,8 @@ document.getElementById("9").onclick = function(){
     number = 9;
     
 }
+
+//Operations
 document.getElementById("plus").onclick = function(){
     checkop = true;
     operator = "plus";
@@ -92,7 +96,7 @@ document.getElementById("division").onclick = function(){
     document.getElementById("Input").innerHTML = "/"
 }
 
-//CLEAR Button Fucntions
+//CLEAR (CE) Button Fucntions
 document.getElementById("CE").onclick = function(){
     document.getElementById("Input").innerHTML = String(0)
     num1 = 0;
@@ -103,7 +107,7 @@ document.getElementById("CE").onclick = function(){
     checknum1 = false;
 }
 
-//EQUALS button Fucntions
+//EQUALS (=) button Fucntions
 document.getElementById("equals").onclick = function(){
     op();
     document.getElementById("Input").innerHTML = final;
@@ -115,14 +119,10 @@ document.getElementById("equals").onclick = function(){
 // Checks between the first number and the second number (USED IN EVERY NUMBER BUTTON FUNCTION)
 function checknum(number){
     if(checkop == false){
-        num1 = number;
-        checknum1 = true;
+        num1.push(number);
     } else {
-        num2 = number;
+        num2.push(number);
     }
-    // if (checknum1 == true){
-    //     document.getElementById("Input").innerHTML += String(number);
-    // }
 }
 
 // Checks the operator being used (USED IN EQUALS BUTTON FUNCTION)
