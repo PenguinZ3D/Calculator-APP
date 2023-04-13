@@ -1,143 +1,131 @@
-//DEFAULT Answer text 
-let display_text = document.getElementById("Input").innerHTML
-
+let display_text = document.getElementById("Input");
+let checknum1 = false;
+let operator = null;
 let num1 = [];
 let num2 = [];
-let operator = null;
 let checkop = false;
-let checknum1 = false;
-let final = 0;
 
-
-
-//Functions for nums and operators
+//Number functions
 document.getElementById("0").onclick = function(){
-    if (display_text == "0") {
-        document.getElementById("Input").innerHTML = display_text
-    } else {
-        document.getElementById("Input").innerHTML = "0"
-    }
-    checknum(0)
+    multiple_nums(0)
+    checknum1 = true;
+    switch_nums(0)
+    console.log(parseInt(num1.join("")));
 }
 document.getElementById("1").onclick = function(){
-    checknum(1)
-    document.getElementById("Input").innerHTML = "1"
-    number = 1;
-    
+    multiple_nums(1)
+    checknum1 = true;
+    switch_nums(1)
 }
 document.getElementById("2").onclick = function(){
-    checknum(2)
-    document.getElementById("Input").innerHTML = "2"
-    number = 2;
-    
+    multiple_nums(2)
+    checknum1 = true;
+    switch_nums(2)
 }
 document.getElementById("3").onclick = function(){
-    checknum(3)
-    document.getElementById("Input").innerHTML = "3"
-    number = 3;
-    
+    multiple_nums(3)
+    checknum1 = true;
+    switch_nums(3)
 }
 document.getElementById("4").onclick = function(){
-    checknum(4)
-    document.getElementById("Input").innerHTML = "4"
-    number = 4;
-    
+    multiple_nums(4)
+    checknum1 = true;
+    switch_nums(4)
 }
 document.getElementById("5").onclick = function(){
-    checknum(5)
-    document.getElementById("Input").innerHTML = "5"
-    number = 5;
-    
+    multiple_nums(5)
+    checknum1 = true;
+    switch_nums(5)
 }
 document.getElementById("6").onclick = function(){
-    checknum(6)
-    document.getElementById("Input").innerHTML = "6"
-    number = 6;
-    
+    multiple_nums(6)
+    checknum1 = true;
+    switch_nums(6)
 }
 document.getElementById("7").onclick = function(){
-    checknum(7)
-    document.getElementById("Input").innerHTML = "7"
-    number = 7;
-
+    multiple_nums(7)
+    checknum1 = true;
+    switch_nums(7)
 }
 document.getElementById("8").onclick = function(){
-    checknum(8)
-    document.getElementById("Input").innerHTML = "8"
-    number = 8;
-    
+    multiple_nums(8)
+    checknum1 = true;
+    switch_nums(8)
 }
 document.getElementById("9").onclick = function(){
-    checknum(9)
-    document.getElementById("Input").innerHTML = "9"
-    number = 9;
-    
+    multiple_nums(9)
+    checknum1 = true;
+    switch_nums(9)
 }
 
-//Operations
+
+//Operators
 document.getElementById("plus").onclick = function(){
-    checkop = true;
+    display_text.innerHTML = "+";
     operator = "plus";
-    document.getElementById("Input").innerHTML = "+"
+    checkop = true;
 }
 document.getElementById("minus").onclick = function(){
-    checkop = true;
+    display_text.innerHTML = "-";
     operator = "minus";
-    document.getElementById("Input").innerHTML = "-"
+    checkop = true;
 }
 document.getElementById("times").onclick = function(){
-    checkop = true;
+    display_text.innerHTML = "*";
     operator = "times";
-    document.getElementById("Input").innerHTML = "*"
+    checkop = true;
 }
 document.getElementById("division").onclick = function(){
-    checkop = true;
+    display_text.innerHTML = "/";
     operator = "division";
-    document.getElementById("Input").innerHTML = "/"
+    checkop = true;
 }
 
-//CLEAR (CE) Button Fucntions
+//CLEAR (CE) function
 document.getElementById("CE").onclick = function(){
-    document.getElementById("Input").innerHTML = String(0)
-    num1 = 0;
-    num2 = 0;
-    operator = null;
-    checkop = false;
-    final = 0;
+    display_text.innerHTML = 0
     checknum1 = false;
+    num1.length = 0;
+    num2.length = 0;
+    checkop = false;
 }
 
-//EQUALS (=) button Fucntions
+//EQUALS (=) function
 document.getElementById("equals").onclick = function(){
-    op();
-    document.getElementById("Input").innerHTML = final;
-    checkop = false;
-    checknum1 = false;
+    equals()
+    console.log(num1);
+    console.log(num2);
+}
+
+
+//Functions for equals button
+function equals(){
+    if (operator == "plus"){     //turns the num1 nad num2 array into a string then to an int 
+        display_text.innerHTML = parseInt(num1.join(""))+parseInt(num2.join(""))
+    } 
+    else if (operator == "minus"){
+        display_text.innerHTML = parseInt(num1.join(""))-parseInt(num2.join(""))
+    }
+    else if (operator == "times"){
+        display_text.innerHTML = parseInt(num1.join(""))*parseInt(num2.join(""))
+    } else{
+        display_text.innerHTML = parseInt(num1.join(""))/parseInt(num2.join(""))
+    }
     
 }
 
-// Checks between the first number and the second number (USED IN EVERY NUMBER BUTTON FUNCTION)
-function checknum(number){
+function multiple_nums(number){ //changes the number on first click and adds onto it
+    if(checknum1 == true){
+        display_text.innerHTML += number
+    } else{
+        display_text.innerHTML = number
+    }
+}
+
+function switch_nums(number){ //If no operator is chosen then use num1 otherwise use num2
     if(checkop == false){
         num1.push(number);
     } else {
         num2.push(number);
     }
 }
-
-// Checks the operator being used (USED IN EQUALS BUTTON FUNCTION)
-function op(){
-    if(operator == "plus"){
-        final = num1 + num2;
-    }
-    if(operator == "minus"){
-        final = num1 - num2;
-    }
-    if(operator == "times"){
-        final = num1 * num2;
-    }
-    if(operator == "division"){
-        final = num1 / num2;
-    }
-}
-
